@@ -28,6 +28,25 @@ end
 
 def sum_to_n? arr, n
   # YOUR CODE HERE
+  # for (i = 0; i <= arr.length; i++) is what I want to do but need to find ruby way of doing it
+  # What i want to do here is take each element of an array and see if subtracting n by the element leaves a positive remainder. Then if it does, it checks it that remainder matches any non-used elements' value. If it does match a value that means two values in the array added together will equal n and true can be returned
+  target = 0
+  i = 0
+  arr.each_with_index do |item, index|
+    i = index
+    if n - item >= 0
+      target = n - item
+      arr.each_with_index do |item, index|
+        #need to find a way to skip the element used in outer loop
+        if index != i && item == target
+          return true
+        end
+      end
+    end
+  end
+  if i == arr.length
+    return false
+  end
 end
 
 # Part 2
